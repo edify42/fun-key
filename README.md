@@ -28,5 +28,24 @@ algorithms are right as rain!
 
 ## references
 
+### learning
+
+we have [a file](./script.py) which we can use to learn about details on the
+curve **Secp256k1** used.
+
+```text
+Obtain the group order n of the curve.
+For Secp256k1 this is FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE BAAEDCE6 AF48A03B BFD25E8C D0364141.
+
+Generate a cryptographically secure random number k between 1 and n-1.
+```
+
+Note that `2^255 < n < 2^256`
+
+The random number `k` above is our private key. As above this number is:
+`1 <= k <= n-1`
+
+### links
+
 stole some code here and there. e.g.
 [protocoin](https://programtalk.com/vs2/?source=python/10047/protocoin/protocoin/util.py)
