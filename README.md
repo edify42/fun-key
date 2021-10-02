@@ -37,6 +37,9 @@ curve **Secp256k1** used.
 Obtain the group order n of the curve.
 For Secp256k1 this is FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE BAAEDCE6 AF48A03B BFD25E8C D0364141.
 
+In decimal the number is:
+115792089237316195423570985008687907852837564279074904382605163141518161494337
+
 Generate a cryptographically secure random number k between 1 and n-1.
 ```
 
@@ -62,6 +65,20 @@ Worth noting is that because we use ECDSA, the key should be positive and
 should be less than the order of the curve. The order of secp256k1 is
 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141, which is
 pretty big: almost any 32-byte number will be smaller than it.
+
+### double hashing of public keys
+
+Wow this is quite interesting - we use two hashing algorithms to hash the
+public key before appending a few tidbits to it to provide the final BTC
+address. Order matters so we do:
+
+`enc = RIPEMD-160(SHA-256(pubkey_x))`
+
+[Hashing algorithm RIPEMD-160](https://en.wikipedia.org/wiki/RIPEMD)
+[Hashing algorithm SHA-256](https://en.wikipedia.org/wiki/SHA-2)
+
+These two one-way algorithms make it hard to guess even the public key used
+in Bitcoin or other cryptocurrencies.
 
 ### links
 
