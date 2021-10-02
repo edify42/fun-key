@@ -42,10 +42,30 @@ Generate a cryptographically secure random number k between 1 and n-1.
 
 Note that `2^255 < n < 2^256`
 
-The random number `k` above is our private key. As above this number is:
+The random number `k` above is our 'seed' number or **private key**?
+As above this number is:
 `1 <= k <= n-1`
+
+We then compute the public key (x, y) via:
+
+```text
+(x, y) = k*G, where G is the generator point of the secp256k1 curve, which is
+0479BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8
+
+OR
+Gx = 0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798
+Gy = 0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8
+
+```
+
+Worth noting is that because we use ECDSA, the key should be positive and
+should be less than the order of the curve. The order of secp256k1 is
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141, which is
+pretty big: almost any 32-byte number will be smaller than it.
 
 ### links
 
 stole some code here and there. e.g.
 [protocoin](https://programtalk.com/vs2/?source=python/10047/protocoin/protocoin/util.py)
+[generate private key](https://www.freecodecamp.org/news/how-to-generate-your-very-own-bitcoin-private-key-7ad0f4936e6c/)
+[generate bitcoin address]()
