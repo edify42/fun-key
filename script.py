@@ -61,7 +61,7 @@ print("full public key: ")
 print(pub_key_hex)
 
 print("pub key x:")
-pub_x = pub_key_bytes[0:32].hex()
-print(pub_x)
+pub_x = pub_key_bytes[0:32]
+print(type(pub_x[0]))
 
 pub_y = pub_key_bytes[33:64].hex()
